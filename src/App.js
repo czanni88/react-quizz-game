@@ -13,7 +13,7 @@ function App() {
           <p>
             That is a little quizz game with facts for you to know me better.
           </p>
-          <p>Have fun &#x1F642; 🙂 </p>
+          <p>Have fun &#x1F642; 🙂</p>
           {/* Two different ways to add emojis, the second way is a VSCode extension */}
           <button
             onClick={() => {
