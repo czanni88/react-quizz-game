@@ -72,26 +72,28 @@ const QuizzGame = () => {
     let points = 0;
     let wrongAnswers = 0;
 
-    for (const property in checkBoxState) {
-      if (
-        checkBoxState[property] &&
-        correctAnswers.includes(Number(property))
-      ) {
-        result.push('🧞🏆');
-        points += 1;
-      } else if (
-        checkBoxState[property] &&
-        !correctAnswers.includes(Number(property))
-      ) {
-        result.push('💥💀');
-      } else if (
-        !checkBoxState[property] &&
-        correctAnswers.includes(Number(property))
-      ) {
-        result.push('👈🧐'); // That is the correct.
-        wrongAnswers = correctAnswers.length - points;
-      } else {
-        result.push(''); // When you should not select and it has not been selected
+    if (Object.values(checkBoxState).includes(true)) {
+      for (const property in checkBoxState) {
+        if (
+          checkBoxState[property] &&
+          correctAnswers.includes(Number(property))
+        ) {
+          result.push('🧞🏆');
+          points += 1;
+        } else if (
+          checkBoxState[property] &&
+          !correctAnswers.includes(Number(property))
+        ) {
+          result.push('💥💀');
+        } else if (
+          !checkBoxState[property] &&
+          correctAnswers.includes(Number(property))
+        ) {
+          result.push('👈🧐'); // That is the correct.
+          wrongAnswers = correctAnswers.length - points;
+        } else {
+          result.push(''); // When you should not select and it has not been selected
+        }
       }
     }
 
@@ -144,22 +146,14 @@ const QuizzGame = () => {
   return (
     <>
       <div>
-        <div>
-          <p>
-            Question {questionIndex + 1}/{quizzDataBase.length}
-          </p>
-        </div>
-        <div>
-          <p>
-            Score: {correct * 10}/{totalAmountOfAnswers() * 10}
-          </p>
-        </div>
-        <div>
-          <p>Right answers: {correct}</p>
-        </div>
-        <div>
-          <p>Wrong answers: {mistakes}</p>
-        </div>
+        <p>
+          Question {questionIndex + 1}/{quizzDataBase.length}
+        </p>
+        <p>
+          Score: {correct * 10}/{totalAmountOfAnswers() * 10}
+        </p>
+        <p>Right answers: {correct}</p>
+        <p>Wrong answers: {mistakes}</p>
       </div>
       <div className='questionsContainer'>
         <h2>{quizzDataBase[questionIndex].question}</h2>
